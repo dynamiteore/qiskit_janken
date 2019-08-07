@@ -16,14 +16,7 @@ def quantum_janken():
     
     # 全qubitを重ね合わせ状態にしてみる
     for i in range(n):
-        circ.h(q[i])
-    
-    # えんたんぐるさせてみる 意味ない？
-    circ.cx(q[3], q[4])
-    circ.cx(q[2], q[3])
-    circ.cx(q[1], q[2])
-    circ.cx(q[0], q[1])
-    
+        circ.h(q[i])  
     
     # 観測する
     c = ClassicalRegister(n, 'c')
