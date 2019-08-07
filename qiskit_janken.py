@@ -52,7 +52,7 @@ def quantum_janken():
     elif rslt < 30:
         return "3"
     else:
-        return "Z"
+        return "4"
 youlos = ['41', '42', '43', '12', '23', '31']
 youwin = ['21', '32', '13']
 
