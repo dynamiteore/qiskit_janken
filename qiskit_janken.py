@@ -68,7 +68,7 @@ aaa = quantum_janken()
 print("\nYOUじゃんけんしていきなよ、\n[1] グー\n[2] ちょき\n[3] per\n")
 bbb = input()
 
-dddict = {'1':'ぐー’, '2':'ちょき', '3':'ぱー', '4':'フラミンゴの法則（必勝）'}
+dddict = {"1":"ぐー", "2":"ちょき", "3":"ぱー", "4":"フラミンゴの法則（必勝）"}
 print("貴様" + dddict[bbb] + "¥n俺様" + dddict[aaa])
 
 ccc = aaa + bbb
