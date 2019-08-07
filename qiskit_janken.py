@@ -33,8 +33,7 @@ def quantum_janken():
     
     qc = circ+meas
     
-    IBMQ.save_account('a1346077218bfce3358a898007a5bc93ef29a017b768e570e46437b740806e0cc25c760485f411a6b740070e6b27c2cf8290356ba177894e3253682d4e281737')
-    #IBMQ.save_account('MY_TOKEN')  # 自分のとーくんをつかってね
+    IBMQ.save_account('MY_TOKEN')  # 自分のとーくんをつかってね
     provider = IBMQ.load_account()
     large_enough_devices = provider.backends(filters=lambda x: x.configuration().n_qubits < 10 and
                                                                        not x.configuration().simulator)
@@ -54,16 +53,28 @@ def quantum_janken():
     rslt = int(max(counts_exp, key=counts_exp.get),2)
     
     if rslt < 10:
-        return 1
+        return "1"
     elif rslt < 20:
-        return 2
+        return "2"
     elif rslt < 30:
-        return 3
+        return "3"
     else:
-        return 4
+        return "Z"
+youlos = ['41', '42', '43', '12', '23', '31']
+youwin = ['21', '32', '13']
 
 aaa = quantum_janken()
 
 print("\nYOUじゃんけんしていきなよ、\n[1] グー\n[2] ちょき\n[3] per\n")
-bbb = int(input())
+bbb = input()
 
+dddict = {'1':'ぐー’, '2':'ちょき', '3':'ぱー', '4':'フラミンゴの法則（必勝）'}
+print("貴様" + dddict[bbb] + "¥n俺様" + dddict[aaa])
+
+ccc = aaa + bbb
+if (ccc in youlos):
+    print("貴様の負けやwwwwwwww")
+elif (ccc in youwin):
+    print("貴様の勝ちや、運が良かったな。")
+else:
+    print("アイコや！！")
