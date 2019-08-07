@@ -1,5 +1,5 @@
 print("now loading...")
-import numpy as np
+
 from qiskit import *
 from qiskit import BasicAer
 from qiskit import IBMQ
