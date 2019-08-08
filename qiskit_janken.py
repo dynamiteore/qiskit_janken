@@ -6,6 +6,7 @@ from qiskit import IBMQ
 from qiskit.providers.ibmq import least_busy
 from qiskit.tools.monitor import job_monitor
 from qiskit.visualization import plot_histogram
+import sys
 
 def quantum_janken():
     # qbit数
@@ -26,19 +27,19 @@ def quantum_janken():
     
     qc = circ+meas
     
-    IBMQ.save_account('MY_TOKEN')  # 自分のとーくんをつかってね
+    #IBMQ.save_account('my_token')  # 自分のとーくんをつかってね
     provider = IBMQ.load_account()
     large_enough_devices = provider.backends(filters=lambda x: x.configuration().n_qubits < 10 and
                                                                        not x.configuration().simulator)
     
-    backend = BasicAer.get_backend('qasm_simulator')    # シミュレーターはこっちを使う
-    #backend = least_busy(large_enough_devices)         # 実機の場合はこっちを使う。順番待ちなのでおそいよ
+    #backend = BasicAer.get_backend('qasm_simulator' )    # シミュレーターはこっちを使う
+    backend = least_busy(large_enough_devices)           # 実機の場合はこっちを使う。順番待ちなのでおそいよ
     
     # 1024回試行
     shots = 1024
-    max_credits = 1
+    max_credits = 5
     job_exp = execute(qc, backend=backend, shots=shots, max_credits=max_credits)
-    job_monitor(job_exp)
+    #job_monitor(job_exp)
     result_exp = job_exp.result()
     counts_exp = result_exp.get_counts(qc)
     
@@ -53,6 +54,8 @@ def quantum_janken():
         return "3"
     else:
         return "4"
+
+fucku = ['1', '2', '3']
 youlos = ['41', '42', '43', '12', '23', '31']
 youwin = ['21', '32', '13']
 
@@ -61,8 +64,13 @@ aaa = quantum_janken()
 print("\nYOUじゃんけんしていきなよ、\n[1] グー\n[2] ちょき\n[3] per\n")
 bbb = input()
 
+if not (bbb in fucku):
+    print("fuck you.")
+    sys.exit(-1)
+
 dddict = {"1":"ぐー", "2":"ちょき", "3":"ぱー", "4":"フラミンゴの法則（必勝）"}
-print("貴様" + dddict[bbb] + "¥n俺様" + dddict[aaa])
+print("貴様" + dddict[bbb])
+print("俺様" + dddict[aaa])
 
 ccc = aaa + bbb
 if (ccc in youlos):
